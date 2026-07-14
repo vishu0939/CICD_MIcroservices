@@ -1,0 +1,15 @@
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform.lock.hcl
+**/.terraform.tfstate.lock.info
+
+# Python
+**/venv/
+
+# Logs
+*.log
+
+# Keys
+*.pem

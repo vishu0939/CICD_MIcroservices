@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-services
+  namespace: microservices
+
+spec:
+  selector:
+    app: user-services
+
+  ports:
+   - protocol: TCP
+     port: 5001
+     targetPort: 5001
+
+  type: ClusterIP

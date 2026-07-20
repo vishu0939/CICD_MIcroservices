@@ -66,5 +66,28 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Push Frontend Image') {
+            steps {
+                sh '''
+                    docker push ${FRONTEND_IMAGE}:latest
+                '''
+            }
+        }
+        stage('Push User Service Image') {
+            steps {
+                sh '''
+                    docker push ${USER_IMAGE}:latest
+                '''
+            }
+        }
+        stage('Push Product Service Image') {
+            steps {
+                sh '''
+                    docker push ${PRODUCT_IMAGE}:latest
+                '''
+            }
+        }
     }
 }

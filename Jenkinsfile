@@ -33,5 +33,25 @@ pipeline {
                 }
             }
         }
+
+        stage('BUILD USER SERVICE IMAGE') {
+            steps{
+                dir('microservices-project/user-service'){
+                    sh '''
+                    docker build -t ${USER_IMAGE}:latest .
+                    '''
+                }
+            }
+        }
+        stage('BUILD PRODUCT SERVICE IMAGE') {
+            steps{
+                dir('microservices-project/product-service'){
+                    sh '''
+                    docker build -t ${PRODUCT_IMAGE}:latest .
+                    '''
+                }
+            }
+        }
+
     }
 }

@@ -22,15 +22,16 @@ pipeline {
                 '''
             }
         }
-    }
+        
 
-    post{
-       success{
-          echo "pipeline success"
-       }
-       failure{
-          echo "pipeline failed"
-       }
+        stage('BUILD FRONTEND IMAGE') {
+            steps{
+                dir('microservice-project/frontend'){
+                    sh '''
+                    docker build -t ${FRONTEND_IMAGE}:latest .
+                    '''
+                }
+            }
+        }
     }
 }
-

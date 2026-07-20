@@ -26,7 +26,7 @@ pipeline {
 
         stage('BUILD FRONTEND IMAGE') {
             steps{
-                dir('microservice-project/frontend'){
+                dir('microservices-project/frontend'){
                     sh '''
                     docker build -t ${FRONTEND_IMAGE}:latest .
                     '''

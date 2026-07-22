@@ -103,7 +103,16 @@ pipeline {
                         aws sts get-caller-identity
                         kubectl version --client
                         kubectl get nodes
+                        
+                        kubectl rollout restart deployment/frontend -n microservices
+                        kubectl rollout restart deployment/user-services -n microservices
+                        kubectl rollout restart deployment/product-service -n microservices
+
                         kubectl get pods -n microservices
+
+                        kubectl rollout status deployment/frontend -n microservices
+                        kubectl rollout status deployment/user-services -n microservices
+                        kubectl rollout status deployment/product-service -n microservices
                      '''
                 }
             }

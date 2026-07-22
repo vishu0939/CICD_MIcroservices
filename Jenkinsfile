@@ -5,6 +5,10 @@ pipeline {
         USER_IMAGE = "vishu0939/user-service"
         PRODUCT_IMAGE = "vishu0939/product-service"
     }
+
+
+//clone code from github to jenkins workspace
+
     stages {
         stage ('project clone from github url') {
             steps{
@@ -23,6 +27,8 @@ pipeline {
             }
         }
         
+
+//build image
 
         stage('BUILD FRONTEND IMAGE') {
             steps{
@@ -52,6 +58,9 @@ pipeline {
                 }
             }
         }
+
+//docker hub login
+
         stage('Docker Hub Login') {
             steps {
                 withCredentials([usernamePassword(
@@ -67,6 +76,7 @@ pipeline {
             }
         }
 
+//image push 
 
         stage('Push Frontend Image') {
             steps {
@@ -90,6 +100,8 @@ pipeline {
             }
         }
 
+
+//DEPLOYMENT
 
         stage('Verify Kubernetes') {
             steps {

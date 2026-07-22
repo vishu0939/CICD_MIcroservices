@@ -89,5 +89,16 @@ pipeline {
                 '''
             }
         }
+
+
+
+        stage ('verify kubectl') {
+            steps {
+                sh '''
+                    kubectl version --client
+                    kubectl get nodes
+                '''
+            }
+        }
     }
 }

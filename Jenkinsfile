@@ -92,6 +92,19 @@ pipeline {
 
 
 
+        stage('verify aws-creds') {
+            steps {
+               withCredentials([[
+                   $class: 'AmazonWebServicesCredentialsBinding',
+                   credentialsId: 'aws-creds'
+               ]]) {
+                   sh '''
+                      aws sts get-caller-identity
+                   '''
+               }
+            }
+        }
+
         stage ('verify kubectl') {
             steps {
                 sh '''
@@ -102,3 +115,5 @@ pipeline {
         }
     }
 }
+
+

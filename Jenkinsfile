@@ -91,29 +91,22 @@ pipeline {
         }
 
 
-
-        stage('verify aws-creds') {
+        stage('Verify Kubernetes') {
             steps {
-               withCredentials([[
-                   $class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: 'aws-creds'
-               ]]) {
-                   sh '''
-                      aws sts get-caller-identity
-                   '''
-               }
-            }
-        }
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-creds'
+                ]]) {
 
-        stage ('verify kubectl') {
-            steps {
-                sh '''
-                    kubectl version --client
-                    kubectl get nodes
-                '''
+                     sh '''
+                        export AWS_DEFAULT_REGION=eu-west-1
+                        aws sts get-caller-identity
+                        kubectl version --client
+                        kubectl get nodes
+                        kubectl get pods -n microservices
+                     '''
+                }
             }
         }
     }
 }
-
-

@@ -9,11 +9,24 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
 
+
+    # HTTPS Listener
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+
+    # Redirect HTTP -> HTTPS
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+
+    # ACM Certificate
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:767828765892:certificate/363c1851-c5fc-48b7-b85a-dbda34060444
+
+
+
 spec:
   ingressClassName: alb
 
   rules:
-  - http:
+  - host: aide-v.xyz 
+    http:
       paths:
 
       - path: /

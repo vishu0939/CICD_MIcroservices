@@ -10,7 +10,7 @@ pipeline {
 //clone code from github to jenkins workspace
 
     stages {
-        stage ('project clone from github url') {
+        stage ('CODE CLONE from github url TO JENKINS WORKSPACE') {
             steps{
                 checkout scm
             }
@@ -61,7 +61,7 @@ pipeline {
 
 //docker hub login
 
-        stage('Docker Hub Login') {
+        stage('DOCKER HUB LOGIN') {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
@@ -103,7 +103,7 @@ pipeline {
 
 //DEPLOYMENT
 
-        stage('Verify Kubernetes') {
+        stage('DEPLOYMENT ON KUBERNETES') {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
